@@ -207,8 +207,6 @@ This is handled by **GitHub Pages** (Settings → Pages → Deploy from branch: 
 
 ## Need Help?
 
-Contact the site developer:
-
 **Sudip Sen**  
 GitHub: [github.com/Sudip-Sen](https://github.com/Sudip-Sen)
 
