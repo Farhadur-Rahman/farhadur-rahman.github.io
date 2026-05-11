@@ -1,0 +1,559 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Dr. Md Farhadur Rahman — Forest Ecologist & Remote Sensing Scientist</title>
+  <meta name="description" content="Assistant Professor, Remote Sensing & GIS, Gazipur Agricultural University. Ph.D. Kyoto University. Forest ecology, LiDAR, UAV remote sensing, SMART agriculture." />
+
+  <!-- CSS -->
+  <link rel="stylesheet" href="css/style.css" />
+
+  <!-- Three.js (LiDAR background) -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+</head>
+<body>
+
+<!-- ═══════════════════════════════════════════
+     LIDAR CANVAS (fixed background)
+═══════════════════════════════════════════ -->
+<canvas id="lidar-canvas"></canvas>
+
+<!-- ═══════════════════════════════════════════
+     SIDEBAR
+═══════════════════════════════════════════ -->
+<aside id="sidebar">
+  <!-- Logo / Name -->
+  <div class="sidebar-logo">
+    <a href="#hero">Dr. Md <span>Farhadur</span> Rahman</a>
+    <div class="logo-sub">Forest Ecologist · Remote Sensing</div>
+  </div>
+
+  <!-- Navigation -->
+  <nav class="sidebar-nav">
+    <ul>
+      <li class="nav-section-label">Main</li>
+      <li><a href="#profile" class="active">Profile</a></li>
+      <li><a href="#academic">Academic Journey</a></li>
+      <li><a href="#research">Research</a></li>
+      <li><a href="#publications">Publications</a></li>
+      <li><a href="#activities">Activities</a></li>
+      <li><a href="#contact">Contact</a></li>
+
+      <!-- Pages -->
+       <li class="nav-section-label" style="margin-top:0.5rem;">Specialization</li>
+       <li><a href="pages/specialization.html">UAV Platforms</a></li>
+      <li class="nav-section-label" style="margin-top:0.5rem;">Projects</li>
+      <li><a href="pages/project-liana-lidar.html">Liana &amp; LiDAR</a></li>
+      <li><a href="pages/project-smart-agriculture.html">SMART Agriculture</a></li>
+      <li><a href="pages/project-surf-it.html">SURF-IT</a></li>
+      <li><a href="pages/project-espar.html">ESPAR</a></li>
+    </ul>
+  </nav>
+
+  <!-- Footer: social profile links -->
+  <div class="sidebar-footer">
+    <div class="sidebar-social">
+      <a href="https://orcid.org/0000-0002-5403-4375" target="_blank" rel="noopener" class="social-link" title="ORCID">
+        <!-- ORCID icon -->
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" width="18" height="18"><path d="M12 0C5.372 0 0 5.372 0 12s5.372 12 12 12 12-5.372 12-12S18.628 0 12 0zM7.369 4.378c.525 0 .947.431.947.947s-.422.947-.947.947-.947-.431-.947-.947.422-.947.947-.947zm-.722 3.038h1.444v10.041H6.647V7.416zm3.562 0h3.9c3.712 0 5.344 2.653 5.344 5.025 0 2.578-2.016 5.016-5.325 5.016h-3.919V7.416zm1.444 1.303v7.444h2.297c2.359 0 3.881-1.575 3.881-3.722 0-2.009-1.353-3.722-3.881-3.722h-2.297z"/></svg>
+        <span>ORCID</span>
+      </a>
+      <a href="https://scholar.google.com/citations?hl=en&user=t57eWUkAAAAJ" target="_blank" rel="noopener" class="social-link" title="Google Scholar">
+        <!-- Scholar icon -->
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" width="18" height="18"><path d="M12 24a7 7 0 1 1 0-14 7 7 0 0 1 0 14zm0-24L0 9.5l4.838 3.94A8 8 0 0 1 12 10a8 8 0 0 1 7.162 3.44L24 9.5z"/></svg>
+        <span>Google Scholar</span>
+      </a>
+      <a href="https://www.linkedin.com/in/farhadur-rahman-7a4043a3/" target="_blank" rel="noopener" class="social-link" title="LinkedIn">
+        <!-- LinkedIn icon -->
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" width="18" height="18"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 0 1-2.063-2.065 2.064 2.064 0 1 1 2.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+        <span>LinkedIn</span>
+      </a>
+    </div>
+  </div>
+</aside>
+
+<!-- Sidebar overlay (mobile tap-to-close) -->
+<div id="sidebar-overlay"></div>
+
+<!-- Sidebar toggle button -->
+<button id="sidebar-toggle" aria-label="Toggle navigation">
+  <span class="toggle-bar bar-top"></span>
+  <span class="toggle-bar bar-mid"></span>
+  <span class="toggle-bar bar-bot"></span>
+</button>
+
+<!-- ═══════════════════════════════════════════
+     MAIN CONTENT
+═══════════════════════════════════════════ -->
+<div id="main-content">
+
+  <!-- ── HERO ──────────────────────────────── -->
+  <section id="hero">
+  <h1 class="hero-name">
+    Md <em>Farhadur</em> Rahman, PhD
+  </h1>
+    <div class="hero-meta">
+      Assistant Professor · Remote Sensing &amp; GIS<br />
+      Gazipur Agricultural University, Bangladesh<br />
+      Ph.D. — Kyoto University, Japan (MEXT Scholar)
+    </div>
+    <a href="#research" class="hero-cta">
+      <span>Explore Research</span>
+      <span>→</span>
+    </a>
+    <div class="hero-scroll">
+      <div class="scroll-line"></div>
+    </div>
+    <div class="hero-social">
+      <a href="https://orcid.org/0000-0002-5403-4375" target="_blank" rel="noopener" title="ORCID">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" width="16" height="16"><path d="M12 0C5.372 0 0 5.372 0 12s5.372 12 12 12 12-5.372 12-12S18.628 0 12 0zM7.369 4.378c.525 0 .947.431.947.947s-.422.947-.947.947-.947-.431-.947-.947.422-.947.947-.947zm-.722 3.038h1.444v10.041H6.647V7.416zm3.562 0h3.9c3.712 0 5.344 2.653 5.344 5.025 0 2.578-2.016 5.016-5.325 5.016h-3.919V7.416zm1.444 1.303v7.444h2.297c2.359 0 3.881-1.575 3.881-3.722 0-2.009-1.353-3.722-3.881-3.722h-2.297z"/></svg>
+        ORCID
+      </a>
+      <a href="https://scholar.google.com/citations?hl=en&user=t57eWUkAAAAJ" target="_blank" rel="noopener" title="Google Scholar">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" width="16" height="16"><path d="M12 24a7 7 0 1 1 0-14 7 7 0 0 1 0 14zm0-24L0 9.5l4.838 3.94A8 8 0 0 1 12 10a8 8 0 0 1 7.162 3.44L24 9.5z"/></svg>
+        Scholar
+      </a>
+      <a href="https://www.linkedin.com/in/farhadur-rahman-7a4043a3/" target="_blank" rel="noopener" title="LinkedIn">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" width="16" height="16"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 0 1-2.063-2.065 2.064 2.064 0 1 1 2.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+        LinkedIn
+      </a>
+    </div>
+  </section>
+
+  <!-- ── PROFILE ────────────────────────────── -->
+  <section id="profile">
+    <div class="section-wrap">
+      <div class="section-header fade-up">
+        <div class="section-number">01</div>
+        <div class="section-title-block">
+          <div class="section-tag">About</div>
+          <h2 class="section-title">Academic <em>Profile</em></h2>
+        </div>
+      </div>
+      <div class="section-divider"></div>
+
+      <div class="profile-grid">
+        <!-- Photo -->
+        <div class="profile-image-frame fade-up">
+          <div class="profile-img-box">
+            <!-- Add your photo: images/profile.jpg -->
+            <img
+              src="images/profile.jpg"
+              alt="Dr. Md Farhadur Rahman"
+              onerror="this.style.display='none'; document.getElementById('prof-fallback').style.display='flex';"
+            />
+            <div id="prof-fallback" class="img-fallback" style="display:none;">MF</div>
+          </div>
+          <div class="profile-frame-accent"></div>
+
+          <!-- Stats -->
+          <div class="profile-stats">
+            <div class="stat-item">
+              <div class="stat-value">16+</div>
+              <div class="stat-label">Publications</div>
+            </div>
+            <div class="stat-item">
+              <div class="stat-value">230<small style="font-size:0.75em"> km²</small></div>
+              <div class="stat-label">LiDAR Coverage</div>
+            </div>
+            <div class="stat-item">
+              <div class="stat-value">5</div>
+              <div class="stat-label">Active Projects</div>
+            </div>
+            <div class="stat-item">
+              <div class="stat-value">2022</div>
+              <div class="stat-label">PhD Awarded</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Bio -->
+        <div class="profile-content fade-up">
+          <h3>"A forest ecologist who applies the most advanced remote sensing techniques to understand and protect forest ecosystems."</h3>
+
+          <p>Dr. Md Farhadur Rahman is an Assistant Professor in the Department of Remote Sensing and GIS at Gazipur Agricultural University (GAU) in Bangladesh. His academic journey reflects both determination and vision — bridging cutting-edge geospatial technologies with the ecological realities of forests.</p>
+
+          <p>Supported by the Japanese Government (MONBUKAGAKUSHO: MEXT), he joined Kyoto University in 2016, completing his Ph.D. in March 2022. His doctoral work covered 230 km² of forest landscapes in central Kyoto using airborne LiDAR, distilling ecologically meaningful insights from massive datasets.</p>
+
+          <p>After completing his Ph.D., Dr. Rahman contributed to <em>The Digital Biosphere Project</em> at Kyoto University — an innovative initiative integrating genomes, traits, and ecology to maximize forest function. At GAU, he is expanding into SMART agriculture, applying geospatial technologies to enhance resilience and sustainability in agro-ecosystems.</p>
+
+          <div class="keyword-chips">
+            <span class="chip">Airborne LiDAR</span>
+            <span class="chip">Forest Ecology</span>
+            <span class="chip">Remote Sensing</span>
+            <span class="chip">GIS</span>
+            <span class="chip">Biodiversity</span>
+            <span class="chip">Climate Resilience</span>
+            <span class="chip">UAV</span>
+            <span class="chip">SMART Agriculture</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── ACADEMIC ───────────────────────────── -->
+  <section id="academic">
+    <div class="section-wrap">
+      <div class="section-header fade-up">
+        <div class="section-number">02</div>
+        <div class="section-title-block">
+          <div class="section-tag">Education &amp; Positions</div>
+          <h2 class="section-title">Academic <em>Journey</em></h2>
+        </div>
+      </div>
+      <div class="section-divider"></div>
+
+      <div class="academic-grid">
+        <!-- Left: Timeline + Positions -->
+        <div class="fade-up">
+          <div class="timeline">
+            <div class="timeline-item">
+              <div class="timeline-dot"></div>
+              <div class="timeline-years">2016 – 2022</div>
+              <div class="timeline-degree">Ph.D. in Forest Ecology</div>
+              <div class="timeline-inst">Kyoto University, Japan</div>
+              <div class="timeline-note">Japanese Government (MEXT) Scholarship. Research on airborne LiDAR, forest structure and disturbance dynamics across 230 km² in central Kyoto. Awarded March 2022.</div>
+            </div>
+            <div class="timeline-item">
+              <div class="timeline-dot"></div>
+              <div class="timeline-years">2016 – 2018</div>
+              <div class="timeline-degree">M.S. in Forestry</div>
+              <div class="timeline-inst">Kyoto University, Japan</div>
+              <div class="timeline-note">Continued into doctoral research in the same laboratory. Specialised in forest remote sensing and canopy leaf ecophysiology.</div>
+            </div>
+            <div class="timeline-item">
+              <div class="timeline-dot"></div>
+              <div class="timeline-years">Completed 2016</div>
+              <div class="timeline-degree">B.Sc. in Forestry</div>
+              <div class="timeline-inst">University of Chittagong, Bangladesh</div>
+              <div class="timeline-note">Institute of Forestry and Environmental Science. Built the foundational passion for technology in forestry and forest ecology.</div>
+            </div>
+          </div>
+
+          <!-- Positions -->
+          <div class="position-list">
+            <h4>Academic Positions</h4>
+            <div class="position-item">
+              <div class="position-title">Assistant Professor</div>
+              <div class="position-inst">Gazipur Agricultural University (GAU), Bangladesh</div>
+              <div class="position-dept">Department of Remote Sensing and GIS</div>
+              <div class="position-years">2022 – Present</div>
+            </div>
+            <div class="position-item">
+              <div class="position-title">Postdoctoral Researcher</div>
+              <div class="position-inst">Kyoto University, Japan</div>
+              <div class="position-dept">Tropical Forest Research &amp; Environments Lab (Assoc. Prof. Yusuke Onoda)</div>
+              <div class="position-years">2022</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Right: Courses + MEXT -->
+        <div class="fade-up">
+          <div class="courses-panel">
+            <h4>Courses Taught</h4>
+            <div class="course-item">Remote Sensing of Environment</div>
+            <div class="course-item">Geographic Information Systems (GIS)</div>
+            <div class="course-item">Forest Ecology</div>
+            <div class="course-item">Land Use Planning &amp; Analysis</div>
+            <div class="course-item">Geospatial Data Analysis</div>
+          </div>
+
+          <div class="mext-box">
+            <h5>MEXT Scholarship</h5>
+            <p>Recipient of the prestigious Japanese Government (MONBUKAGAKUSHO) scholarship — one of the most competitive academic funding programmes globally — enabling six years of doctoral and postdoctoral research at Kyoto University.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── RESEARCH ───────────────────────────── -->
+  <section id="research">
+    <div class="section-wrap">
+      <div class="section-header fade-up">
+        <div class="section-number">03</div>
+        <div class="section-title-block">
+          <div class="section-tag">Research Focus</div>
+          <h2 class="section-title">Research <em>Interests</em></h2>
+        </div>
+      </div>
+      <div class="section-divider"></div>
+
+      <!-- Research Cards -->
+      <div class="research-grid fade-up">
+        <div class="research-card">
+          <div class="research-icon">◈</div>
+          <h3>LiDAR Applications in Forest Ecology</h3>
+          <p>Pioneering use of airborne LiDAR to analyze forest structure and disturbance dynamics. High-resolution data transforms ecological monitoring for precision forestry.</p>
+          <div class="tag-list">
+            <span class="tag">Airborne LiDAR</span>
+            <span class="tag">Canopy Height</span>
+            <span class="tag">Forest Structure</span>
+          </div>
+        </div>
+        <div class="research-card">
+          <div class="research-icon">⚡</div>
+          <h3>Forest Disaster Dynamics</h3>
+          <p>Investigating how typhoons, storms, and liana infestations alter forest structure, biomass, and recovery. Combining LiDAR, satellite imagery, and ecological modelling.</p>
+          <div class="tag-list">
+            <span class="tag">Typhoons</span>
+            <span class="tag">Liana Infestation</span>
+            <span class="tag">Biomass</span>
+            <span class="tag">Resilience</span>
+          </div>
+        </div>
+        <div class="research-card">
+          <div class="research-icon">◎</div>
+          <h3>Land Use Change &amp; Modeling</h3>
+          <p>Applying remote sensing and GIS to track land use changes, fragmentation, and degradation. Predictive models explore how landscapes evolve under climate change.</p>
+          <div class="tag-list">
+            <span class="tag">GIS</span>
+            <span class="tag">Fragmentation</span>
+            <span class="tag">Cellular Automata</span>
+            <span class="tag">ANN</span>
+          </div>
+        </div>
+        <div class="research-card">
+          <div class="research-icon">❋</div>
+          <h3>Plant Physiological Ecology</h3>
+          <p>Studying leaf spectral reflectance and photosynthesis in Quercus species, linking physiological traits to broader ecological processes at ecosystem scale.</p>
+          <div class="tag-list">
+            <span class="tag">Spectral Reflectance</span>
+            <span class="tag">Photosynthesis</span>
+            <span class="tag">Quercus</span>
+          </div>
+        </div>
+        <div class="research-card">
+          <div class="research-icon">⊕</div>
+          <h3>Landscape Ecology &amp; Restoration</h3>
+          <p>Examining spatial patterns to design restoration strategies for degraded ecosystems. Integrating local knowledge with scientific tools for inclusive restoration.</p>
+          <div class="tag-list">
+            <span class="tag">Restoration</span>
+            <span class="tag">Community-based</span>
+            <span class="tag">Spatial Patterns</span>
+          </div>
+        </div>
+        <div class="research-card">
+          <div class="research-icon">✦</div>
+          <h3>SMART Agriculture</h3>
+          <p>Expanding into geospatial technologies for agro-ecosystems — UAV remote sensing for crop monitoring, yield prediction, and sustainable farming under climate stress.</p>
+          <div class="tag-list">
+            <span class="tag">UAV</span>
+            <span class="tag">Precision Agriculture</span>
+            <span class="tag">Crop Monitoring</span>
+          </div>
+        </div>
+      </div>
+      <div style="text-align:center; margin-bottom:3rem;">
+      <a href="pages/specialization.html" class="hero-cta">View Full Specialization →</a>
+      </div>
+      <!-- Projects -->
+      <div class="projects-section fade-up">
+        <h3>Current Research Projects</h3>
+        <div class="projects-list">
+
+          <a class="project-item" href="pages/project-liana-lidar.html">
+            <span class="project-role">PI</span>
+            <div>
+              <div class="project-title">An analysis of trend and causes of liana infestation in Sal Forests of Bangladesh using High Resolution Satellite Borne Lidar and Optical Sensors</div>
+              <div class="project-funder">Research Management Wing, GAU</div>
+            </div>
+            <div style="display:flex;align-items:start;gap:0.75rem;">
+              <div class="project-years">2024–2026</div>
+              <div class="project-link-arrow">↗</div>
+            </div>
+          </a>
+
+          <a class="project-item" href="pages/project-espar.html">
+            <span class="project-role">Co-PI</span>
+            <div>
+              <div class="project-title">Enabling Stakeholder Participation and Applied Research in Policy Comprehension to Mainstream Climate Resilient Agro-farming Practices in National Climate Agenda (ESPAR)</div>
+              <div class="project-funder">Asia Pacific Network</div>
+            </div>
+            <div style="display:flex;align-items:start;gap:0.75rem;">
+              <div class="project-years">2023–2024</div>
+              <div class="project-link-arrow">↗</div>
+            </div>
+          </a>
+
+          <a class="project-item" href="pages/project-surf-it.html">
+            <span class="project-role">Co-PI</span>
+            <div>
+              <div class="project-title">Spatial Surge Forecasting Using Artificial Intelligence and Community Knowledge for Inclusive and Transformative Early Actions (SURF-IT)</div>
+              <div class="project-funder">IDRC</div>
+            </div>
+            <div style="display:flex;align-items:start;gap:0.75rem;">
+              <div class="project-years">2024–2026</div>
+              <div class="project-link-arrow">↗</div>
+            </div>
+          </a>
+        </div>
+
+        <h3 style="margin-top:3rem;">Completed Projects</h3>
+        <div class="projects-list">
+          <a class="project-item" href="pages/project-smart-agriculture.html">
+            <span class="project-role">PI</span>
+            <div>
+              <div class="project-title">Evaluation of local factors and past disturbance regimes on Liana Infestation in Sal Forests of Bangladesh using advanced remote sensing techniques</div>
+              <div class="project-funder">University Grant Commission</div>
+            </div>
+            <div style="display:flex;align-items:start;gap:0.75rem;">
+              <div class="project-years">2023–2024</div>
+              <div class="project-link-arrow">↗</div>
+            </div>
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── PUBLICATIONS ───────────────────────── -->
+  <section id="publications">
+    <div class="section-wrap">
+      <div class="section-header fade-up">
+        <div class="section-number">04</div>
+        <div class="section-title-block">
+          <div class="section-tag">Scholarly Work</div>
+          <h2 class="section-title">Selected <em>Publications</em></h2>
+        </div>
+      </div>
+      <div class="section-divider"></div>
+
+      <div class="pub-filters fade-up">
+        <input type="text" class="pub-search" id="pub-search" placeholder="Search by title, journal, or keyword…" />
+        <button class="pub-filter-btn active" data-filter="all">All</button>
+        <button class="pub-filter-btn" data-filter="lidar">LiDAR</button>
+        <button class="pub-filter-btn" data-filter="uav">UAV</button>
+        <button class="pub-filter-btn" data-filter="bangladesh">Bangladesh</button>
+        <span class="pub-count" id="pub-count">16 papers</span>
+      </div>
+
+      <div class="pub-list fade-up" id="pub-list">
+        <!-- Rendered by main.js -->
+      </div>
+    </div>
+  </section>
+
+  <!-- ── ACTIVITIES ─────────────────────────── -->
+  <section id="activities">
+    <div class="section-wrap">
+      <div class="section-header fade-up">
+        <div class="section-number">05</div>
+        <div class="section-title-block">
+          <div class="section-tag">Professional</div>
+          <h2 class="section-title">Other <em>Activities</em></h2>
+        </div>
+      </div>
+      <div class="section-divider"></div>
+
+      <div class="activities-grid fade-up">
+        <div class="activity-card">
+          <h3>CLARE CS Hub — International Training</h3>
+          <div class="years">2023–2024</div>
+          <p>Climate Adaptation and Resilience (CLARE) Capacity Strengthening Hub — cross-country collaborative training funded by UK FCDO and Canada's IDRC.</p>
+          <p>Conducted workshops on climate resilience methodologies and geospatial tools for local researchers and practitioners.</p>
+          <div class="location-pills">
+            <span class="location-pill">Maldives</span>
+            <span class="location-pill">Philippines</span>
+          </div>
+        </div>
+
+        <div class="activity-card">
+          <h3>Key Collaborations</h3>
+          <ul class="collab-list">
+            <li class="collab-item">Kyoto University — Digital Biosphere Project (with Assoc. Prof. Yusuke Onoda)</li>
+            <li class="collab-item">Gazipur Agricultural University — Smart Agriculture &amp; UAV Research</li>
+            <li class="collab-item">Asia Pacific Network — Climate Resilient Agro-farming (ESPAR)</li>
+            <li class="collab-item">IDRC — Spatial Surge Forecasting (SURF-IT)</li>
+            <li class="collab-item">University of Chittagong — Forest ecology and community forestry research</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── CONTACT ────────────────────────────── -->
+  <section id="contact">
+    <div class="section-wrap">
+      <div class="section-header fade-up">
+        <div class="section-number">06</div>
+        <div class="section-title-block">
+          <div class="section-tag">Get in Touch</div>
+          <h2 class="section-title">Contact &amp; <em>Profiles</em></h2>
+        </div>
+      </div>
+      <div class="section-divider"></div>
+
+      <div class="contact-grid">
+        <div class="fade-up">
+          <p class="contact-intro">Open to collaboration, <em>partnerships</em>, and research opportunities.</p>
+          <div class="contact-items">
+            <div class="contact-item">
+              <div class="contact-icon">@</div>
+              <div>
+                <div class="contact-label">Institutional Email</div>
+                <div class="contact-value"><a href="mailto:farhad.rsgis@gau.edu.bd">farhad.rsgis@gau.edu.bd</a></div>
+              </div>
+            </div>
+            <div class="contact-item">
+              <div class="contact-icon">@</div>
+              <div>
+                <div class="contact-label">Personal Email</div>
+                <div class="contact-value"><a href="mailto:farhadurrahaman14@gmail.com">farhadurrahaman14@gmail.com</a></div>
+              </div>
+            </div>
+            <div class="contact-item">
+              <div class="contact-icon">☏</div>
+              <div>
+                <div class="contact-label">Mobile</div>
+                <div class="contact-value"><a href="tel:+8801722778108">+880 1722 778108</a></div>
+              </div>
+            </div>
+            <div class="contact-item">
+              <div class="contact-icon">⊕</div>
+              <div>
+                <div class="contact-label">Location</div>
+                <div class="contact-value">Gazipur Agricultural University (GAU), Gazipur, Bangladesh</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="fade-up">
+          <div class="profiles-panel">
+            <h4>Academic Profiles</h4>
+            <a class="profile-link" href="https://orcid.org/0000-0002-5403-4375" target="_blank" rel="noopener">
+              <span class="profile-link-name">ORCID</span>
+              <span class="profile-link-value">0000-0002-5403-4375 ↗</span>
+            </a>
+            <a class="profile-link" href="https://www.scopus.com/authid/detail.uri?authorId=57301010600" target="_blank" rel="noopener">
+              <span class="profile-link-name">Scopus Author ID</span>
+              <span class="profile-link-value">57301010600 ↗</span>
+            </a>
+            <a class="profile-link" href="mailto:farhad.rsgis@gau.edu.bd">
+              <span class="profile-link-name">GAU Institutional</span>
+              <span class="profile-link-value">Faculty Page ↗</span>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <footer>
+      <p>© 2025 Dr. Md Farhadur Rahman · Gazipur Agricultural University</p>
+      <p>Forest Ecologist &amp; Remote Sensing Scientist</p>
+    </footer>
+  </section>
+
+</div><!-- /#main-content -->
+
+<!-- Scripts (load after DOM) -->
+<script src="js/lidar.js"></script>
+<script src="js/sidebar.js"></script>
+<script src="js/main.js"></script>
+
+</body>
+</html>
