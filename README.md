@@ -1,194 +1,148 @@
-# Dr. Md Farhadur Rahman — Portfolio Website
+Dr. Md Farhadur Rahman — Academic Portfolio Website
+Live Site: https://farhadur-rahman.github.io
+Repository: github.com/Farhadur-Rahman/farhadur-rahman.github.io
 
-A multi-page academic portfolio with collapsible sidebar navigation, 
-enhanced LiDAR point cloud background, and dedicated project pages.
+About This Site
+This is the personal academic portfolio website of Dr. Md Farhadur Rahman, Assistant Professor, Department of Remote Sensing and GIS, Gazipur Agricultural University (GAU), Bangladesh. The site showcases his research, publications, projects, and professional profile.
+Built with plain HTML, CSS, and JavaScript — no frameworks, no build tools. Everything runs directly in the browser.
 
----
+Live URL
+https://farhadur-rahman.github.io
 
-## 📁 File Structure
-
-```
-professor-portfolio/
+File Structure
+farhadur-rahman.github.io/
+│
 ├── index.html                        ← Main page (all sections)
+│
 ├── css/
-│   └── style.css                     ← All styling — edit here for design changes
+│   └── style.css                     ← All design and layout styles
+│
 ├── js/
-│   ├── lidar.js                      ← Three.js LiDAR background animation
-│   ├── sidebar.js                    ← Sidebar open/close, scroll-spy
-│   └── main.js                       ← Publications filter + fade animations
+│   ├── lidar.js                      ← Animated LiDAR background
+│   ├── sidebar.js                    ← Sidebar open/close behaviour
+│   └── main.js                       ← Publications list and filter
+│
 ├── pages/
-│   ├── project-liana-lidar.html      ← Liana & LiDAR project page
-│   ├── project-smart-agriculture.html ← SMART Agriculture / UAV page
-│   ├── project-surf-it.html          ← SURF-IT flood forecasting page
-│   └── project-espar.html            ← ESPAR climate farming page
-├── images/
-│   ├── profile.jpg                   ← YOUR PHOTO (add this!)
-│   ├── liana-hero.jpg                ← Project hero images (add these)
-│   └── ...                           ← All project + gallery photos go here
-├── .github/
-│   └── workflows/
-│       └── deploy.yml                ← Auto-deploys to GitHub Pages on push
+│   ├── specialization.html           ← UAV platforms and skills page
+│   ├── project-liana-lidar.html      ← Liana & LiDAR project details
+│   ├── project-smart-agriculture.html← SMART Agriculture project
+│   ├── project-surf-it.html          ← SURF-IT project details
+│   └── project-espar.html            ← ESPAR project details
+│
+├── images/                           ← ALL photos go in this folder
+│   ├── profile.jpg                   ← Your profile photo
+│   ├── liana-hero.jpg                ← Liana project hero image
+│   ├── uav-air3s.jpg                 ← DJI Air 3S photo
+│   ├── uav-inspire2.jpg              ← DJI Inspire 2 photo
+│   ├── uav-m300.jpg                  ← Matrice 300 RTK photo
+│   └── uav-m350.jpg                  ← Matrice 350 RTK photo
+│
 └── README.md                         ← This file
-```
 
----
+How to Edit the Site
+You can edit everything directly on GitHub — no software needed.
+Step 1 — Go to the repository
+Visit github.com/Farhadur-Rahman/farhadur-rahman.github.io and log in.
+Step 2 — Open any file
+Click the file you want to edit (e.g. index.html).
+Step 3 — Edit
+Click the pencil icon ✏️ at the top right of the file.
+Step 4 — Save
+Scroll down → click "Commit changes" → click "Commit changes" again.
+The site updates automatically within 1–2 minutes.
 
-## 🖼 Adding Your Profile Photo
+Common Editing Tasks
+✏️ Change your name, title, or bio
 
-1. Put your photo inside the `images/` folder
-2. Name it exactly `profile.jpg`
-3. The website will automatically display it
+Open index.html
+Press Ctrl+F in your browser to search for the text you want to change
+Edit it → Commit
 
-For best results: use a portrait photo, at least 600×800 pixels.
 
----
+📸 Add or replace a photo
 
-## 🖼 Adding Project Photos
+Go to the repository on GitHub
+Click the images/ folder
+Click "Add file" → "Upload files"
+Upload your photo
+Important: Name it exactly as expected (see table below)
+Click "Commit changes"
 
-For each project page, there are placeholder divs like:
-```html
-<div class="project-img-placeholder">ADD PROJECT PHOTO HERE — images/liana-hero.jpg</div>
-```
+PhotoFile nameYour profile photoprofile.jpgLiana project main imageliana-hero.jpgDJI Air 3Suav-air3s.jpgDJI Inspire 2uav-inspire2.jpgMatrice 300 RTKuav-m300.jpgMatrice 350 RTKuav-m350.jpg
 
-To replace a placeholder with a real image:
-1. Add your image to the `images/` folder (e.g. `liana-hero.jpg`)
-2. In the HTML, **delete** the `<div class="project-img-placeholder">` block
-3. **Uncomment** (remove the `<!--` and `-->`) the `<img>` tag above it:
-   ```html
-   <img src="../images/liana-hero.jpg" alt="Liana infestation" class="project-hero-img" />
-   ```
+Tip: If your photo is a .png file, you can either rename it to .jpg or update the src in the HTML to match the correct extension.
 
-Same process for gallery images inside `.project-gallery` divs.
 
----
+📄 Add a new publication
 
-## ✏️ Editing Content in VS Code
+Open js/main.js
+Find the line that says const PUBS = [
+Add a new entry at the top (for newest first):
 
-Open the folder in VS Code:
-```
-File → Open Folder → select professor-portfolio/
-```
+javascript{
+  year: 2026,
+  authors: "Your Author, A., Rahman, M. F., et al.",
+  title: "Title of your new paper here",
+  journal: "Journal Name",
+  doi: "https://doi.org/10.xxxx/xxxxxx",
+  tags: ["Tag1", "Tag2", "Bangladesh"]
+},
 
-### Changing text on the main page
-- Open `index.html`
-- Use **Ctrl+F** (or Cmd+F on Mac) to search for any text you want to change
-- Edit directly — the site needs no build step
+Commit — the publication appears on the site automatically.
 
-### Changing colors or fonts
-- Open `css/style.css`
-- Scroll to the `:root { }` block at the top — all colors are CSS variables:
-  ```css
-  --gold:    #c9a84c   /* accent color */
-  --emerald: #2dd4a0   /* secondary accent */
-  --navy:    #080c18   /* background */
-  ```
-- Change any value and save — done!
 
-### Adding a new project page
-1. Copy `pages/project-liana-lidar.html` 
-2. Rename it to `pages/project-your-project.html`
-3. Edit the content inside
-4. Add a link in the sidebar of `index.html`:
-   ```html
-   <li><a href="pages/project-your-project.html"><span class="nav-num">→</span> Your Project</a></li>
-   ```
-5. Add the same link in all other page sidebars too
+Tags tip: Use tags like "LiDAR", "UAV", "Bangladesh" so the filter buttons work correctly.
 
-### Adding a new publication
-- Open `js/main.js`
-- Find the `const PUBS = [` array at the top
-- Copy an existing entry and update it:
-  ```javascript
-  {
-    year: 2026,
-    authors: "Author, A., Rahman, M. F., et al.",
-    title: "Title of the paper",
-    journal: "Journal Name",
-    doi: "https://doi.org/10.xxxx/xxxxx",
-    tags: ["Tag1", "Tag2", "Bangladesh"]
-  },
-  ```
-- Save. The publications page updates automatically.
 
----
+🗂️ Add a new project page
 
-## 🚀 Publishing on GitHub Pages
+Go to the pages/ folder on GitHub
+Open any existing project file (e.g. project-liana-lidar.html)
+Click the pencil icon → Select all → Copy
+Go back to pages/ folder → Click "Add file" → "Create new file"
+Name it: project-yourproject.html
+Paste the copied content and edit the text
+Commit
 
-### First time setup
+Then add a link to it in index.html inside the sidebar section:
+html<li><a href="pages/project-yourproject.html">Your Project Name</a></li>
 
-1. **Create a GitHub account** at github.com (if you don't have one)
+🎨 Change colors
+All colors are defined at the top of css/style.css inside :root { }:
+css:root {
+  --gold:    #c9a84c;   /* gold accent color */
+  --emerald: #2dd4a0;   /* green accent color */
+  --navy:    #080c18;   /* dark background */
+}
+Change any value and commit — the whole site updates.
 
-2. **Create a new repository**:
-   - Go to github.com → click "+" → "New repository"
-   - Name it: `farhadur-rahman` (or any name you like)
-   - Set it to **Public**
-   - Do NOT initialise with README
+📞 Update contact information
 
-3. **Upload your files** (easiest way — no command line needed):
-   - On the new repo page, click **"uploading an existing file"**
-   - Drag and drop your entire `professor-portfolio/` folder
-   - Add commit message: "Initial site upload"
-   - Click **"Commit changes"**
+Open index.html
+Search for farhad.rsgis@gau.edu.bd to find the contact section
+Edit email, phone, or location
+Commit
 
-4. **Enable GitHub Pages**:
-   - Go to repository **Settings** → **Pages**
-   - Source: **GitHub Actions**
-   - The `.github/workflows/deploy.yml` file handles deployment automatically
 
-5. **Your site will be live at**:
-   ```
-   https://YOUR-USERNAME.github.io/REPOSITORY-NAME/
-   ```
+Adding Collaborators
+To give someone else access to edit this repository:
 
-### Updating the site after changes
+Go to Settings → Collaborators
+Click "Invite collaborators"
+Enter their GitHub username
+They accept the email invitation
+They now have full edit access
 
-If you make changes in VS Code:
-- Save your files
-- Go to your GitHub repository
-- Click the file you changed → pencil icon to edit → paste new content → commit
-- The site auto-deploys in ~1-2 minutes
 
-OR use GitHub Desktop app (easiest for beginners):
-- Download from desktop.github.com
-- Sync changes with one click
+How the Site Deploys
+Every time you commit a change to GitHub, the site automatically rebuilds and goes live within 1–2 minutes. No manual steps needed.
+This is handled by GitHub Pages (Settings → Pages → Deploy from branch: main).
 
----
+Technical Details
+ItemDetailFrameworkNone — plain HTML/CSS/JS3D BackgroundThree.js r128 (LiDAR point cloud)FontsCormorant Garamond, DM Sans, Space Mono (Google Fonts)HostingGitHub Pages (free)Build stepNone required
 
-## 🔧 Advanced: Running Locally
 
-Open `index.html` directly in a browser — no server needed for basic viewing.
+Sudip Sen
+GitHub: github.com/Sudip-Sen
 
-For full functionality (font loading, etc.):
-```bash
-# Python 3
-python -m http.server 8000
-# Open: http://localhost:8000
-```
-
----
-
-## 📝 Adding Blog Posts (Future)
-
-The current site doesn't have a blog, but you can add one:
-
-1. Create a `blog/` folder
-2. Copy `pages/project-liana-lidar.html` as a template
-3. Use it to write posts — same format as project pages
-4. Add blog links to the sidebar nav section
-
-For a full blogging system (with listing page, dates, categories), 
-consider upgrading to **Jekyll** (free, works with GitHub Pages):
-- https://jekyllrb.com/docs/github-pages/
-
----
-
-## 🎨 Design Reference
-
-| Element | Font | Color |
-|---------|------|-------|
-| Headings | Cormorant Garamond | `#dde4f0` / `#c9a84c` |
-| Body text | DM Sans | `#aab4c8` |
-| Labels/codes | Space Mono | `#7a8699` |
-| Accent gold | — | `#c9a84c` |
-| Accent emerald | — | `#2dd4a0` |
-| Background | — | `#080c18` |
+Last updated: May 2026
